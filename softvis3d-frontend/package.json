@@ -69,7 +69,8 @@
     "three-orbit-controls": "^82.1.0",
     "ts-node": "^3.1.0",
     "typescript": "^3.9.7",
-    "webpack": "^4.46.0"
+    "webpack": "^4.46.0",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.9.0",
@@ -104,7 +105,11 @@
     "webpack-dev-server": "^3.11.2"
   },
   "mocha": {
-    "require": ["jsdom-global/register", "ts-node/register", "reflect-metadata"],
+    "require": [
+      "jsdom-global/register",
+      "ts-node/register",
+      "reflect-metadata"
+    ],
     "reporter": "spec",
     "spec": "test/**/*.spec.ts*",
     "file": "./test/setupEnzyme.ts"
