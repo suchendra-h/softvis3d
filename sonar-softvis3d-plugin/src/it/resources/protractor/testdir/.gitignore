@@ -1,5 +1,0 @@
-results
-node_modules
-
-protractor/test/*.js
-protractor/test/*.js.map

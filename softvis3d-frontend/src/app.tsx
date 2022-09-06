@@ -116,7 +116,7 @@ export default class App {
         }
     }
 
-    public run(target: string) {
+    public run() {
         this.communicator.loadAvailableMetrics().then(() => {
             this.visualizationLinkService.process(document.location.search);
         });
@@ -124,7 +124,7 @@ export default class App {
         this.componentInfoService.loadComponentInfo();
         this.assertClientRequirementsAreMet();
 
-        ReactDOM.render(<Softvis3D />, document.getElementById(target));
+        ReactDOM.render(<Softvis3D />, document.getElementById("app"));
     }
 
     public stop(target: string) {

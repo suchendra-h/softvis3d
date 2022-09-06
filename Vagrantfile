@@ -1,6 +1,6 @@
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "hashicorp/precise64"
+  config.vm.box = "bento/ubuntu-16.04"
 
   config.vm.network "forwarded_port", guest: 9000, host: 9000 # SonarQube
 
@@ -13,10 +13,10 @@ Vagrant.configure("2") do |config|
 
     curl -s -L https://github.com/docker/compose/releases/download/1.13.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
     chmod +x /usr/local/bin/docker-compose
-
-    usermod -G vboxsf -a 'ubuntu'
-    usermod -G docker -a 'ubuntu'
-    echo "cd /vagrant" >> /home/ubuntu/.bashrc
+    groupadd vboxsf
+    usermod -G vboxsf -a 'vagrant'
+    usermod -G docker -a 'vagrant'
+    echo "cd /vagrant" >> /home/vagrant/.bashrc
   SHELL
 
   config.vm.provider "virtualbox" do |vb|

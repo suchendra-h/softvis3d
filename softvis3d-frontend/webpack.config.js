@@ -18,11 +18,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
 module.exports = function (env, argv) {
-    var webpack = require('webpack'),
-        path = require('path'),
-        isProd = argv.mode === 'production',
-        MiniCssExtractPlugin = require('mini-css-extract-plugin'),
-        targetFolder = "static/"
+    var webpack = require("webpack"),
+        path = require("path"),
+        isProd = argv.mode === "production",
+        MiniCssExtractPlugin = require("mini-css-extract-plugin"),
+        targetFolder = "static/";
 
     return [
         // ######## JS Configuration ########
@@ -40,17 +40,17 @@ module.exports = function (env, argv) {
                 "core-js/fn/object/get-own-property-names",
                 "core-js/fn/object/get-own-property-symbols",
                 "core-js/fn/promise",
-                "./src/index.ts"
+                "./src/index.ts",
             ],
             output: {
                 path: path.join(__dirname, "app"),
-                filename: targetFolder + "bundle.js"
+                filename: targetFolder + "bundle.js",
             },
 
             devtool: isProd ? false : "source-map",
 
             resolve: {
-                extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
+                extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js"],
             },
 
             module: {
@@ -62,25 +62,25 @@ module.exports = function (env, argv) {
                             {
                                 loader: "babel-loader",
                                 options: {
-                                    presets: ["env"]
-                                }
+                                    presets: ["env"],
+                                },
                             },
                             {
-                                loader: "ts-loader"
+                                loader: "ts-loader",
                             },
-                        ]
+                        ],
                     },
                     {
                         test: /\.js$/,
                         use: ["source-map-loader"],
-                        enforce: "pre"
-                    }
-                ]
+                        enforce: "pre",
+                    },
+                ],
             },
 
             externals: {
-                "react": "React",
-                "react-dom": "ReactDOM"
+                react: "React",
+                "react-dom": "ReactDOM",
             },
 
             optimization: {
@@ -99,23 +99,22 @@ module.exports = function (env, argv) {
             },
 
             devServer: {
-                port: 8080,
+                port: 3000,
                 open: true,
-                contentBase: path.join(__dirname, 'app/'),
+                contentBase: path.join(__dirname, "app/"),
                 proxy: {
-                    '/api': 'http://localhost:9000',
+                    "/api": "http://localhost:9000",
                 },
-                quiet: false
-            }
+                quiet: false,
+            },
         },
-
 
         // ####### SASS Configuration #######
         // ##################################
         {
             name: "css",
 
-            entry: [ "./src/style/index.scss" ],
+            entry: ["./src/style/index.scss"],
 
             output: {
                 path: path.join(__dirname, "app"),
@@ -125,27 +124,29 @@ module.exports = function (env, argv) {
                 rules: [
                     {
                         test: /\.scss$/,
-                        use: [MiniCssExtractPlugin.loader, "css-loader", 'sass-loader'],
-                    }
-                ]
+                        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+                    },
+                ],
             },
 
             optimization: {
                 splitChunks: {
                     cacheGroups: {
                         styles: {
-                            name: 'styles',
+                            name: "styles",
                             test: /\.css$/,
-                            chunks: 'all',
+                            chunks: "all",
                             enforce: true,
                         },
                     },
                 },
             },
 
-            plugins: [new MiniCssExtractPlugin({
-                filename: targetFolder + 'style.css',
-            })]
-        }
+            plugins: [
+                new MiniCssExtractPlugin({
+                    filename: targetFolder + "style.css",
+                }),
+            ],
+        },
     ];
 };
