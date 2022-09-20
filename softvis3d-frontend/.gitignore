@@ -10,3 +10,5 @@ src/*.js.map
 
 npm-debug.log*
 /app/main.js
+.env
+

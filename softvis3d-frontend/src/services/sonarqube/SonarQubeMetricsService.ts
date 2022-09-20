@@ -54,7 +54,7 @@ export default class SonarQubeMetricsService extends BackendService {
                 this.appStatusStore.load(SonarQubeMetricsService.LOAD_METRICS);
             }
 
-            const params = { f: "name,description", p: page };
+            const params = { p: page };
             this.callApi("/metrics/search", { params })
                 .then((response) => {
                     const metrics: Metric[] = (response.data.metrics as SonarQubeApiMetric[])

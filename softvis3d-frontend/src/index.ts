@@ -22,9 +22,7 @@ import "reflect-metadata";
 import App from "./app";
 import { AppConfiguration } from "./classes/AppConfiguration";
 
-const config = new AppConfiguration("", true, "http://localhost:3000");
+const config = new AppConfiguration("org.apache.maven:maven", true, "http://localhost:9000");
 const myApp = new App(config);
 
-(window as any).softvis3d = {
-    app: myApp,
-};
+myApp.run();
